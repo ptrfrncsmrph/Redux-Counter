@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import { increment, decrement, reset } from "../actions"
 
-const Counter = ({ count, increment, decrement }) => {
+const Counter = ({ count, increment, decrement, reset }) => {
   const incrementIfOdd = () => count % 2 !== 0 && increment()
   const incrementAsync = () => setTimeout(increment, 1000)
   return (
@@ -12,6 +12,7 @@ const Counter = ({ count, increment, decrement }) => {
       <button onClick={decrement}>-</button>
       <button onClick={incrementIfOdd}>Increment if odd</button>
       <button onClick={incrementAsync}>Increment async</button>
+      <button onClick={reset}>Reset counter</button>
     </p>
   )
 }
