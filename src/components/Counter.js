@@ -1,39 +1,19 @@
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { increment, decrement, reset } from "../actions"
 
-class Counter extends Component {
-  incrementIfOdd = () => {
-    // Stretch Problem: Implement an increment function that
-    // only increments if the counter value is odd
-  }
-
-  incrementAsync = () => {
-    // Stretch Problem: Implement an increment function that
-    // increments after waiting for one second
-  }
-
-  render() {
-    // Fill in the two button onClick methods
-    // Upon clicking these buttons, the count
-    // should decrement or increment accordingly
-    const { count, increment, decrement } = this.props
-    return (
-      <p>
-        Clicked: {count} times
-        <button onClick={increment}>+</button>
-        <button onClick={decrement}>-</button>
-        {/* Uncomment these button tags if you got
-                around to implementing the extra credit functions */}
-        {/* <button onClick={this.incrementIfOdd}>
-                    Increment if odd
-                </button>
-                <button onClick={this.incrementAsync}>
-                    Increment async
-                </button>  */}
-      </p>
-    )
-  }
+const Counter = ({ count, increment, decrement }) => {
+  const incrementIfOdd = () => count % 2 !== 0 && increment()
+  const incrementAsync = () => setTimeout(increment, 1000)
+  return (
+    <p>
+      Clicked: {count} times
+      <button onClick={increment}>+</button>
+      <button onClick={decrement}>-</button>
+      <button onClick={incrementIfOdd}>Increment if odd</button>
+      <button onClick={incrementAsync}>Increment async</button>
+    </p>
+  )
 }
 
 // The mapStateToProps function specifies which portion of the
